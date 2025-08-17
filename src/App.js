@@ -18,7 +18,10 @@ export const App = () => {
   };
 
   const handleOnClearItems = () => {
-    setItems([]);
+    const confirmed = window.confirm(
+      "Are you sure, you want to delete all the items?"
+    );
+    if (confirmed) setItems([]);
   };
   return (
     <div className="main-app">
@@ -132,7 +135,9 @@ const PackingList = ({
           <option value="packed">Sort by packed</option>
         </select>
         &emsp;
-        <button onClick={onClearItems}>Clear List</button>
+        <button onClick={onClearItems} disabled={items.length === 0}>
+          Clear List
+        </button>
       </div>
     </div>
   );
